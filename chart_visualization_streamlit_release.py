@@ -1,7 +1,7 @@
 import requests
 import streamlit as st
 
-url = 'https://www.example.com'
+url = 'https://circlechart.kr/page_chart/onoff.circle?nationGbn=T&serviceGbn=S1040&targetTime=8&hitYear=2024&termGbn=month&yearTime=3'
 try:
     response = requests.get(url)
     if response.status_code == 200:
