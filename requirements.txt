@@ -4,5 +4,4 @@ spotipy
 requests
 selenium
 streamlit
-itertools
 webdriver-manager
