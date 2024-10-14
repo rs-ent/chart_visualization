@@ -10,7 +10,6 @@ import spotipy
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import undetected_chromedriver as uc
 from spotipy.oauth2 import SpotifyClientCredentials
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -39,13 +38,12 @@ def get_chunks(lst, chunk_size):
 
 # Selenium 으로 Circle Chart 크롤링
 def circle_chart_crawling(year, mon):
-    chrome_options = uc.Options()
+    chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
 
-    #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    driver = uc.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get(f"https://circlechart.kr/page_chart/onoff.circle?nationGbn=T&serviceGbn=S1040&targetTime={mon}&hitYear={year}&termGbn=month&yearTime=3")
 
     html_source = driver.page_source
