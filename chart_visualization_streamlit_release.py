@@ -13,7 +13,7 @@ from selenium import webdriver
 from spotipy.oauth2 import SpotifyClientCredentials
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+#from webdriver_manager.chrome import ChromeDriverManager
 
 # 시각화용 라이브러리
 import numpy as np
@@ -45,8 +45,8 @@ def circle_chart_crawling(year, mon):
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-software-rasterizer")
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
+    #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.get(f"https://circlechart.kr/page_chart/onoff.circle?nationGbn=T&serviceGbn=S1040&targetTime={mon}&hitYear={year}&termGbn=month&yearTime=3")
 
     html_source = driver.page_source
