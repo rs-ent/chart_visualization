@@ -36,15 +36,14 @@ sp = spotipy.Spotify(auth_manager=auth_manager)
 def get_chunks(lst, chunk_size):
         return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
 
-chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
-
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
 # Selenium 으로 Circle Chart 크롤링
-def circle_chart_crawling(year, mon, driver):
+def circle_chart_crawling(year, mon):
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get(f"https://circlechart.kr/page_chart/onoff.circle?nationGbn=T&serviceGbn=S1040&targetTime={mon}&hitYear={year}&termGbn=month&yearTime=3")
 
     html_source = driver.page_source
@@ -140,7 +139,7 @@ def circle_chart():
     if st.button("Show Chart"):
         with st.spinner("Waiting..."):
             if f'is_get_circle_chart_{year}_{mon}' not in st.session_state:
-                chart_list, chart_dict, track_ids, track_feature_dict, data, title_data, combinations = circle_chart_crawling(year, mon, driver)
+                chart_list, chart_dict, track_ids, track_feature_dict, data, title_data, combinations = circle_chart_crawling(year, mon)
                 st.session_state[f'chart_list_{year}_{mon}'] = chart_list
                 st.session_state[f'chart_dict_{year}_{mon}'] = chart_dict
                 st.session_state[f'track_ids_{year}_{mon}'] = track_ids
