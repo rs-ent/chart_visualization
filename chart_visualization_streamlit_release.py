@@ -42,8 +42,11 @@ def circle_chart_crawling(year, mon):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-software-rasterizer")
+
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+
     driver.get(f"https://circlechart.kr/page_chart/onoff.circle?nationGbn=T&serviceGbn=S1040&targetTime={mon}&hitYear={year}&termGbn=month&yearTime=3")
 
     html_source = driver.page_source
