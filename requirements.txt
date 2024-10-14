@@ -6,3 +6,4 @@ selenium
 streamlit
 webdriver-manager
 undetected-chromedriver
+python==3.11
