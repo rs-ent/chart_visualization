@@ -1,0 +1,7 @@
+bs4
+plotly
+spotipy
+selenium
+streamlit
+itertools
+webdriver-manager
